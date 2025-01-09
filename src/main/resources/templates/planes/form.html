@@ -2,39 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Formulaire Avion</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1 th:text="${plane.id == null ? 'Create New Plane' : 'Edit Plane'}">Formulaire Avion</h1>
-    
-    <form th:action="@{/planes}" th:object="${plane}" method="post">
-        <input type="hidden" th:field="*{id}">
+    <div class="container">
+        <h1 th:text="${plane.id == null ? 'Ajouter un avion' : 'Modifier un avion'}">Formulaire Avion</h1>
         
-        <div>
-            <label>Modèle:</label>
-            <input type="text" th:field="*{model}">
-        </div>
-        
-        <div>
-            <label>Marque:</label>
-            <input type="text" th:field="*{brand}">
-        </div>
-        
-        <div>
-            <label>Date de sortie:</label>
-            <input type="date" th:field="*{releaseDate}">
-        </div>
-        
-        <div>
-            <label>Statut:</label>
-            <select th:field="*{status}">
-                <option value="available">Available</option>
-                <option value="borrowed">Borrowed</option>
-            </select>
-        </div>
-        
-        <button type="submit">Sauvegarder</button>
-    </form>
-    
-    <a href="/planes">Retour à la liste</a>
+        <form th:action="@{/planes}" th:object="${plane}" method="post">
+            <input type="hidden" th:field="*{id}">
+            
+            <div class="form-group">
+                <label>Modèle:</label>
+                <input type="text" th:field="*{model}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Marque:</label>
+                <input type="text" th:field="*{brand}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Date de sortie:</label>
+                <input type="date" th:field="*{releaseDate}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Statut:</label>
+                <select th:field="*{status}" required>
+                    <option value="disponible">Disponible</option>
+                    <option value="loué">Loué</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            <a href="/planes" class="btn btn-danger">Annuler</a>
+        </form>
+    </div>
 </body>
 </html>
